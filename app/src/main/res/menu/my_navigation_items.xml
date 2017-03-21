@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/action_commute"
+        android:title="Travel"
+        android:icon="@drawable/commute" />
+
+    <item android:id="@+id/action_popular"
+        android:title="Popular"
+        android:enabled="true"
+        android:icon="@drawable/popular" />
+
+
+    <item android:id="@+id/action_recreation"
+        android:title="Recreation"
+        android:icon="@drawable/recreation" />
+</menu>

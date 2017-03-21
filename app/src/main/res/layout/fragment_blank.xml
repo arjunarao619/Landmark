@@ -1,0 +1,22 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:paddingTop="16dp"
+    android:layout_height="match_parent"
+    android:id = "@+id/popular_layout"
+    tools:context="landmark.arjunarao.arjunrao.com.landmark.BlankFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <GridView
+        android:id="@+id/dashboard_grid"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:listSelector="@android:color/transparent"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="20.0dip"
+        android:scrollbars="vertical"
+        android:layout_centerInParent="true"
+        style="@style/dashboard" />
+
+</FrameLayout>
