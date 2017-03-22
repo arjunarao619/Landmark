@@ -1,9 +1,11 @@
 package landmark.arjunarao.arjunrao.com.landmark;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.net.Uri;
@@ -55,11 +57,12 @@ public class CommuteFragment extends Fragment implements OnItemClickListener,
     GoogleApiClient mGoogleApiClient;
     LocationRequest mLocationRequest;
     double latitude,longitude;
+    public String radius;
 
     ProgressBar progressBar;
     static final LauncherIcon[] ICONS = {
             new LauncherIcon(R.drawable.airport, "Airport"),
-            new LauncherIcon(R.drawable.car_wash, "Car Wash"),
+            new LauncherIcon(R.drawable.carwash, "Car Wash"),
             new LauncherIcon(R.drawable.gas, "Gas Station"),
             new LauncherIcon(R.drawable.car, "Car Repair"),
             new LauncherIcon(R.drawable.subway, "Subway"),
@@ -87,7 +90,8 @@ public class CommuteFragment extends Fragment implements OnItemClickListener,
         mGoogleApiClient = new GoogleApiClient.Builder(getActivity()).addApi(LocationServices.API).addConnectionCallbacks(this).addOnConnectionFailedListener(this).build();
         mGoogleApiClient.connect();
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
-
+        SharedPreferences sp = this.getActivity().getSharedPreferences("radius", Activity.MODE_PRIVATE);
+        radius = String.valueOf(sp.getInt("radius", 2000));
         return view;
 
     }
@@ -249,7 +253,7 @@ public class CommuteFragment extends Fragment implements OnItemClickListener,
 
         StringBuilder sb = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
         sb.append("location=" + latitude + "," + longitude);
-        sb.append("&radius=2000");
+        sb.append("&radius=" + radius);
         sb.append("&types=" + place);
         sb.append("&sensor=true");
         sb.append("&key=AIzaSyAX7LgOR7FyUaGSjp4gxwLA8VzyMF-UuX0");
@@ -418,7 +422,7 @@ public class CommuteFragment extends Fragment implements OnItemClickListener,
             }catch(Exception exc){
                 AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
                 dialog.setTitle("ERROR");
-                dialog.setMessage("Your Location is Unavailable. Please try again");
+                dialog.setMessage("No landmark found with specified radius. Increase search radius and try again");
                 dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

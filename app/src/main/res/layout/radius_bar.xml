@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/your_dialog_root_element"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/bottomBar"
+
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SeekBar
+        android:id="@+id/your_dialog_seekbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="10000"
+        android:progressDrawable="@drawable/red_scrubber_progress"
+        android:thumb="@drawable/red_scrubber_control"
+        android:paddingBottom="30dp"
+        android:background="#004D40"
+         />
+
+    <Button
+        android:id="@+id/your_dialog_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SET RADIUS"
+        android:background="#004D40"
+        android:textColor="#e0e0e0"
+
+
+        android:layout_below="@+id/your_dialog_seekbar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="11dp">
+
+    </Button>
+</RelativeLayout>
