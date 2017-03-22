@@ -3,15 +3,18 @@
 
     <item android:id="@+id/action_commute"
         android:title="Travel"
+        android:checked="false"
         android:icon="@drawable/commute" />
 
     <item android:id="@+id/action_popular"
         android:title="Popular"
+        android:checked="true"
         android:enabled="true"
         android:icon="@drawable/popular" />
 
 
     <item android:id="@+id/action_recreation"
+        android:checked="false"
         android:title="Recreation"
         android:icon="@drawable/recreation" />
 </menu>

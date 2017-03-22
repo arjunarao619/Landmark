@@ -6,6 +6,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -36,19 +37,20 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        setupNavigationView();
+        setupNavigationView(toolbar);
 
 
 
     }
 
 
-    private void setupNavigationView() {
+    private void setupNavigationView(final Toolbar toolbar) {
         final BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
         if (bottomNavigationView != null) {
 
             // Select first menu item by default and show Fragment accordingly.
             Menu menu = bottomNavigationView.getMenu();
+
             selectFragment(menu.getItem(1));
 
             // Set action to perform when any menu-item is selected.
@@ -57,7 +59,24 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                             selectFragment(item);
-                         
+
+                            item.setEnabled(true);
+                            switch (item.getItemId()) {
+                                case R.id.action_commute:
+                                    // Action to perform when Home Menu item is selected.
+
+                                    toolbar.setTitle("Travel landmarks");
+                                    break;
+                                case R.id.action_popular:
+                                    // Action to perform when Bag Menu item is selected.
+                                    toolbar.setTitle("Popular Landmarks");
+                                    break;
+                                case R.id.action_recreation:
+                                    // Action to perform when Account Menu item is selected.
+                                    toolbar.setTitle("Recreation Landmarks");
+                                    break;
+                            }
+
 
                             return false;
                         }
@@ -73,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_commute:
                 // Action to perform when Home Menu item is selected.
+
                 pushFragment(new CommuteFragment());
                 break;
             case R.id.action_popular:
@@ -94,6 +114,10 @@ public class MainActivity extends AppCompatActivity {
         if (fragmentManager != null) {
             FragmentTransaction ft = fragmentManager.beginTransaction();
             if (ft != null) {
+                ft.setCustomAnimations(R.animator.fragment_slide_left_enter,
+                        R.animator.fragment_slide_left_exit,
+                        R.animator.fragment_slide_right_enter,
+                        R.animator.fragment_slide_right_exit);
                 ft.replace(R.id.rootLayout, fragment);
                 ft.commit();
             }

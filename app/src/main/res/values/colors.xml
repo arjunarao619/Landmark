@@ -2,6 +2,9 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
+    <color name="white">#ffffff</color>
     <color name="colorAccent">#FF4081</color>
     <color name="bottomBar">#009688</color>
+    <color name="commute">#E53935</color>
+    <color name="receation">@color/colorAccent</color>
 </resources>

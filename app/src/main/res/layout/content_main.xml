@@ -24,14 +24,15 @@
     <android.support.design.widget.BottomNavigationView
 
         android:id="@+id/navigation"
-        app:itemIconTint="#e0e0e0"
 
-        app:itemTextColor="#e0e0e0"
+        app:itemIconTint="@drawable/item_selected"
+        app:itemTextColor="@drawable/item_selected"
         app:elevation="16dp"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        app:itemBackground="@color/bottomBar"
+        app:itemBackground="@color/white"
         android:layout_height="56dp"
+
         android:layout_gravity="start|bottom"
         app:menu="@menu/my_navigation_items" />
 

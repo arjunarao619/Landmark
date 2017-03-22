@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/content_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="landmark.arjunarao.arjunrao.com.landmark.ContainerActivity"
+    tools:showIn="@layout/app_bar_container"
+
+xmlns:tools="http://schemas.android.com/tools"
+
+
+>
+
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id = "@+id/rootLayout"
+    android:layout_above="@+id/navigation"
+    >
+
+</FrameLayout>
+
+<android.support.design.widget.BottomNavigationView
+
+    android:id="@+id/navigation"
+
+    app:itemIconTint="@drawable/item_selected"
+    app:itemTextColor="@drawable/item_selected"
+    app:elevation="16dp"
+    android:layout_alignParentBottom="true"
+    android:layout_width="match_parent"
+    app:itemBackground="@color/white"
+    android:layout_height="56dp"
+
+    android:layout_gravity="start|bottom"
+    app:menu="@menu/my_navigation_items" />
+
+</RelativeLayout>
