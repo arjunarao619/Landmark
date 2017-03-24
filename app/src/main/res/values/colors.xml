@@ -7,4 +7,5 @@
     <color name="bottomBar">#009688</color>
     <color name="commute">#E53935</color>
     <color name="receation">@color/colorAccent</color>
+    <color name="gray">#212121</color>
 </resources>

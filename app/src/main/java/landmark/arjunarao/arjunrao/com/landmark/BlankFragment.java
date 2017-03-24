@@ -30,6 +30,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 
@@ -91,6 +92,7 @@ public class BlankFragment extends Fragment implements OnItemClickListener,
         View view = inflater.inflate(R.layout.fragment_blank,container,false);
         //some code
         GridView gridview = (GridView) view.findViewById(R.id.dashboard_grid);
+
         gridview.setAdapter(new ImageAdapter(view.getContext()));
         gridview.setOnItemClickListener(this);
         mGoogleApiClient = new GoogleApiClient.Builder(getActivity()).addApi(LocationServices.API).addConnectionCallbacks(this).addOnConnectionFailedListener(this).build();
@@ -98,7 +100,11 @@ public class BlankFragment extends Fragment implements OnItemClickListener,
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
 
         SharedPreferences sp = this.getActivity().getSharedPreferences("radius", Activity.MODE_PRIVATE);
-        radius = String.valueOf(sp.getInt("radius", 2000));
+        radius = sp.getString("radius", "2");
+        int intradius = Integer.valueOf(radius);
+        intradius*=1000;
+        radius = String.valueOf(intradius);
+
 
         return view;
 
@@ -282,6 +288,7 @@ public class BlankFragment extends Fragment implements OnItemClickListener,
         StringBuilder sb = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
         sb.append("location=" + latitude + "," + longitude);
         sb.append("&radius=" + radius);
+
         sb.append("&types=" + place);
         sb.append("&sensor=true");
         sb.append("&key=AIzaSyAX7LgOR7FyUaGSjp4gxwLA8VzyMF-UuX0");

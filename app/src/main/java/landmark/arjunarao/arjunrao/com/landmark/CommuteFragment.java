@@ -90,8 +90,14 @@ public class CommuteFragment extends Fragment implements OnItemClickListener,
         mGoogleApiClient = new GoogleApiClient.Builder(getActivity()).addApi(LocationServices.API).addConnectionCallbacks(this).addOnConnectionFailedListener(this).build();
         mGoogleApiClient.connect();
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+
+
         SharedPreferences sp = this.getActivity().getSharedPreferences("radius", Activity.MODE_PRIVATE);
-        radius = String.valueOf(sp.getInt("radius", 2000));
+        radius = sp.getString("radius", "2");
+        int intradius = Integer.valueOf(radius);
+        intradius*=1000;
+        radius = String.valueOf(intradius);
+
         return view;
 
     }
@@ -135,9 +141,14 @@ public class CommuteFragment extends Fragment implements OnItemClickListener,
                 placesTask6.execute(sbValue6.toString());
                 break;
             case 7:
-                StringBuilder sbValue7 = new StringBuilder(sbMethod("bus_station"));
+                StringBuilder sbValue7 = new StringBuilder(sbMethod("train_station"));
                 PlacesTask placesTask7 = new PlacesTask();
                 placesTask7.execute(sbValue7.toString());
+                break;
+            case 8:
+                StringBuilder sbValue8 = new StringBuilder(sbMethod("bus_station"));
+                PlacesTask placesTask8 = new PlacesTask();
+                placesTask8.execute(sbValue8.toString());
                 break;
 
 

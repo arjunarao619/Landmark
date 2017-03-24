@@ -61,8 +61,8 @@ public class RecFragment extends Fragment implements OnItemClickListener,
 
     ProgressBar progressBar;
     static final LauncherIcon[] ICONS = {
-            new LauncherIcon(R.drawable.airport, "Bar"),
-            new LauncherIcon(R.drawable.carwash, "Theatre"),
+            new LauncherIcon(R.drawable.beer, "Bar"),
+            new LauncherIcon(R.drawable.movie, "Theatre"),
             new LauncherIcon(R.drawable.library, "Library"),
             new LauncherIcon(R.drawable.bowling, "Bowling"),
             new LauncherIcon(R.drawable.book, "Books"),
@@ -101,7 +101,10 @@ public class RecFragment extends Fragment implements OnItemClickListener,
         mGoogleApiClient.connect();
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
         SharedPreferences sp = this.getActivity().getSharedPreferences("radius", Activity.MODE_PRIVATE);
-        radius = String.valueOf(sp.getInt("radius", 2000));
+        radius = sp.getString("radius", "2");
+        int intradius = Integer.valueOf(radius);
+        intradius*=1000;
+        radius = String.valueOf(intradius);
 
         return view;
 
@@ -116,7 +119,7 @@ public class RecFragment extends Fragment implements OnItemClickListener,
                 placesTask.execute(sbValue.toString());
                 break;
             case 1:
-                StringBuilder sbValue1 = new StringBuilder(sbMethod("theatre"));
+                StringBuilder sbValue1 = new StringBuilder(sbMethod("movie_theater"));
                 PlacesTask placesTask1 = new PlacesTask();
                 placesTask1.execute(sbValue1.toString());
                 break;
